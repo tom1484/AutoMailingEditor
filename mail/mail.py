@@ -67,8 +67,9 @@ def attach_files_method1(folder, msg):
     """
     This method will attach all the files in the ./attach folder.
     """
-    dir_path = join(folder, "/attach")
+    dir_path = join(folder, "attach")
     files = listdir(dir_path)
+    print(folder)
     for f in files:  # add files to the message
         file_path = join(dir_path, f)
         attachment = MIMEApplication(open(file_path, "rb").read())
@@ -87,6 +88,7 @@ def attach_files_method2(msg):
 
 
 def send(folder):
+    print(folder)
     # load email account info
     config = cp.ConfigParser()
     config.read(join(folder, "config.ini"), encoding="utf-8")  # reading sender account information
@@ -132,7 +134,6 @@ def send(folder):
                 time.sleep(20)  # for mail server limitation
 
             if count == 0:
-                print(rec_file)
                 column["name"] = recipient.index("name")
                 column["id"] = recipient.index("id")
                 count += 1

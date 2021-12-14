@@ -5,6 +5,7 @@ from PyQt5 import QtWebEngineWidgets
 import qt.editor as editor
 import mail.mail as mail
 
+import sys
 from os import mkdir
 from os.path import split, join, abspath, exists
 import configparser as cp
@@ -87,7 +88,7 @@ class Main(QMainWindow, editor.Ui_MainWindow):
                 with open(join(self.folder, "recipients.csv"), 'w', encoding="utf-8") as recipients_file:
                     recipients_file.write(self.edit_recipient.toPlainText())
 
-                with open(join(self.folder, "config.ini"), 'w') as config_file:
+                with open(join(self.folder, "config.ini"), 'w', encoding="utf-8") as config_file:
                     config = cp.ConfigParser()
 
                     config.add_section("ACCOUNT")
@@ -133,7 +134,6 @@ class Main(QMainWindow, editor.Ui_MainWindow):
 
 
 if __name__ == '__main__':
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     window = Main()
     window.show()
